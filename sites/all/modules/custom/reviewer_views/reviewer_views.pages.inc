@@ -160,8 +160,8 @@ function reviewer_views_dashboard_view() {
 
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', 'node')
-      ->entityCondition('bundle', 'review')
-      ->propertyCondition('status', 1);
+      ->entityCondition('bundle', 'review');
+     // Remove published requirement ->propertyCondition('status', 1);
 
     $result = $query->execute();
     if (isset($result['node'])) {
