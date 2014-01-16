@@ -187,33 +187,35 @@ function reviewer_views_dashboard_view() {
     // The logic loops through and matches reviews with their rightful
     // proposals and provides the decision the reviewer made all the while.
     foreach ($proposals as $proposal_id => $proposal_info) {
-      foreach ($proposal_info->field_reviewer[LANGUAGE_NONE] as $key => $reviewer) {
-        if (isset($reviews2[$proposal_id])) {
-          foreach ($proposal_info->field_reviewer[LANGUAGE_NONE] as $key2 => $value ) {
-            $decision = t('No recommendation');
-            foreach ($reviews2[$proposal_id] as $review_nid => $review) {
-              if ($review['reviewer_uid'] == $reviewer['uid']) {
-                $decision = $reviews2[$proposal_id][$review_nid]['decision'] . ' ' . l("View or edit this review", 'node/' . $review_nid);
-                unset($reviews2[$proposal_id][$review_nid]);
-                break 2;
+      if (isset($proposal_info->field_reviewer[LANGUAGE_NONE])) {
+        foreach ($proposal_info->field_reviewer[LANGUAGE_NONE] as $key => $reviewer) {
+          if (isset($reviews2[$proposal_id])) {
+            foreach ($proposal_info->field_reviewer[LANGUAGE_NONE] as $key2 => $value ) {
+              $decision = t('No recommendation');
+              foreach ($reviews2[$proposal_id] as $review_nid => $review) {
+                if ($review['reviewer_uid'] == $reviewer['uid']) {
+                  $decision = $reviews2[$proposal_id][$review_nid]['decision'] . ' ' . l("View or edit this review", 'node/' . $review_nid);
+                  unset($reviews2[$proposal_id][$review_nid]);
+                  break 2;
+                }
               }
             }
           }
-        }
-        else {
-          $decision = t("Yet to review");
-        }
+          else {
+            $decision = t("Yet to review");
+          }
 
-        $reviewer_uid = $proposal_info->field_reviewer[LANGUAGE_NONE][$key]['uid'];
-        $user = user_load($reviewer_uid);
-        $reviewer_name = l(theme('display_name', (array)$user), 'user/' . $user->uid);
+          $reviewer_uid = $proposal_info->field_reviewer[LANGUAGE_NONE][$key]['uid'];
+          $user = user_load($reviewer_uid);
+          $reviewer_name = l(theme('display_name', (array)$user), 'user/' . $user->uid);
 
-        $rows[] = array(
-          $reviewer_name,
-          l($proposal_info->field_proposal_title_2014[LANGUAGE_NONE][0]['value'], 'node/' . $proposal_id),
-          $decision,
-          empty($proposal_info->field_final_decision) ? "" : $proposal_info->field_final_decision[LANGUAGE_NONE][0]['value'],
-        );
+          $rows[] = array(
+            $reviewer_name,
+            l($proposal_info->field_proposal_title_2014[LANGUAGE_NONE][0]['value'], 'node/' . $proposal_id),
+            $decision,
+            empty($proposal_info->field_final_decision) ? "" : $proposal_info->field_final_decision[LANGUAGE_NONE][0]['value'],
+          );
+        }
       }
     }
 
