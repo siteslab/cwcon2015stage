@@ -4,77 +4,15 @@
  * Code for the custom CWCON functionality
  */
 
-/**
- * Implements hook_field_formatter_info().
- */
-function cwcon_custom_field_formatter_info() {
-  return array(
-    'display_name' => array(
-      'label' => t('Display Name (first and last)'),
-      'description' => t('Display the user\'s full name'),
-      'field types' => array('entityreference', 'node_reference', 'user_reference'),
-    ),
-  );
-}
-
-/**
- * Implements hook_field_formatter_settings_summary().
- */
-function cwcon_custom_field_formatter_settings_summary($field, $instance, $view_mode) {
-  $display = $instance['display'][$view_mode];
-  $settings = $display['settings'];
-  $summary = t('Turns a username into a first and last name');
-  return $summary;
-}
-
-/**
- * Implements hook_field_formatter_view().
- */
-function cwcon_custom_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  $element = array();
-
-  if ($display['type'] == 'display_name'  && !empty($entity->{$field['field_name']}[LANGUAGE_NONE])) {
-    foreach ($entity->{$field['field_name']}[LANGUAGE_NONE] as $user) {
-      $display_user = user_load($user['uid']);
-      $display_users[] = l(theme('display_name', (array)$display_user), 'user/' . $user['uid']);
-    }
-    $element[0]['#markup'] = implode($display_users, ', ');
-  }
-
-  return $element;
-}
-
-/**
- * Returns string for a display name (FirstName LastName) given a presenter.
- *
- * @param $variables
- *   An associative array containing:
- *   - properties of the presenter user object
- *
- * @ingroup themeable
- */
-function theme_display_name($variables) {
-  $display_name_array = array();
-  foreach (array('field_first_name', 'field_last_name') as $field) {
-    if (!empty($variables[$field])) {
-      $display_name_array[] = $variables[$field][LANGUAGE_NONE][0]['value'];
-    }
-  }
-
-  $display_name = implode(" ", $display_name_array);
-
-  return $display_name;
-}
-
 /*
- * Implements hook_theme()
+ * Implements hook_username_alter().
  */
-function cwcon_custom_theme(){
-  return array(
-    'display_name' => array(
-      'variables' => array('presenter' => NULL),
-    ),
-  );
+function cwcon_custom_username_alter(&$name, $account) {
+  $account = user_load($account->uid);
+  if (isset($account->field_first_name[LANGUAGE_NONE][0]['value']) &&
+    $account->field_last_name[LANGUAGE_NONE][0]['value']) {
+    $name = $account->field_first_name[LANGUAGE_NONE][0]['value'] . ' ' . $account->field_last_name[LANGUAGE_NONE][0]['value'];
+  }
 }
 
 /**
