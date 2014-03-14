@@ -1,0 +1,29 @@
+diff --git a/multiselect.module b/multiselect.module
+index 30ea3b4..2f4b90a 100644
+--- a/multiselect.module
++++ b/multiselect.module
+@@ -86,6 +86,9 @@ function multiselect_field_widget_form(&$form, &$form_state, $field, $instance,
+   // Prepare the list of options.
+   $options = _options_get_options($field, $instance, $properties, NULL, NULL);
+ 
++  // Remove all tags from values. Very useful for views displays.
++  $options = array_map("strip_tags", $options);
++
+   // Put current field values in shape.
+   $default_value = _options_storage_to_form($items, $options, $value_key, $properties);
+   /* END copy from options.module */
+@@ -94,10 +97,10 @@ function multiselect_field_widget_form(&$form, &$form_state, $field, $instance,
+   //for each selected item ($items are in delta order still), we unset the item from $options (which is in nid/tid order)
+   //then just re-append it to the bottom of the options array, in order of $items, this fools the FAPI and retains order on edit
+   foreach ($items as $item) {
+-    if (isset($options[$item['nid']])) {
+-      $val = $options[$item['nid']];
+-      unset($options[$item['nid']]);
+-      $options[$item['nid']] = $val;
++    if (isset($options[$item[$value_key]])) {
++      $val = $options[$item[$value_key]];
++      unset($options[$item[$value_key]]);
++      $options[$item[$value_key]] = $val;
+     }
+   }
+ 
