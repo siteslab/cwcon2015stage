@@ -7,4 +7,11 @@ dependencies[] = views
 dependencies[] = oauth_common
 dependencies[] = ctools
 
-configure = admin/config/services/tweet_feed
+configure = admin/configure/tweet_feed
+
+; Information added by Drupal.org packaging script on 2014-05-15
+version = "7.x-1.7"
+core = "7.x"
+project = "tweet_feed"
+datestamp = "1400164430"
+
