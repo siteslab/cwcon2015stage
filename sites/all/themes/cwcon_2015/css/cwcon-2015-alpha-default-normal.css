@@ -1,0 +1,28 @@
+/* @override http://siteslab.org/cwcon/2015/sites/all/themes/new2014subtheme/css/new2014subtheme-alpha-default-normal.css?n5kejt */
+
+/* @override http://siteslab.org/cwcon/2014stage/sites/all/themes/new2014subtheme/css/new2014subtheme-alpha-default-normal.css?mq8pmk */
+
+
+
+/* This file will hold styles that are loaded using the same media query as the normal grid. */
+/* If you are using the default media queries provided by Omega, these styles will also
+ *  apply to the widescreen layout unless they are overridden by the widescreen styles. */
+ 
+ #region-content {
+ 	bottom: 10px;
+ 	
+ }
+ 
+ .logo-img {
+ 	margin-left: -10px;
+ }
+ 
+
+ 
+ /* STYLES GO HERE */}
+ 
+/* html {
+ 	/* background-color: #e3d7b3;  *!/
+ 	    background: -moz-linear-gradient(top, #f0e396 12%, #6e933b 89%) no-repeat fixed #f0e396;
+ 	    background: -webkit-linear-gradient(top, #f0e396 12%, #6e933b 89%) no-repeat fixed #f0e396;
+ 	}*/

@@ -25,6 +25,32 @@ function multiselect_help($path, $arg) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function multiselect_menu() {
+  $items['admin/config/content/multiselect'] = array(
+    'title' => t('Multiselect'),
+    'description' => t('Configure how multiselect fields are displayed to content editors.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('multiselect_settings'),
+    'file' => 'multiselect.admin.inc',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_init().
+ */
+function multiselect_init() {
+  $multiselect_widths = variable_get('multiselect_widths');
+  if (!empty($multiselect_widths)) {
+    drupal_add_js(array('multiselect' => array('widths' => $multiselect_widths)), 'setting');
+  }
+}
+
+/**
  * Implements hook_form_alter().
  */
 function multiselect_form_alter(&$form, &$form_state, $form_id) {
