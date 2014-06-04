@@ -1,6 +1,0 @@
-name = Views for reviewer 
-description = Custom dashboards views for reviewers to see
-core = 7.x
-package = CWCON
-
-dependencies[] = cwcon_custom

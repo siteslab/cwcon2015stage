@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Rideshare feature.
- */
-
-include_once 'rideshare.features.inc';
