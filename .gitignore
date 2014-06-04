@@ -4,9 +4,3 @@ sites/*/settings*.php
 # Ignore paths that contain user-generated content.
 sites/*/files
 sites/*/private
-
-# Ignore siteslab created ftpquota file
-.ftpquota
-
-# Ignore hosting environment's error log
-/error_log
