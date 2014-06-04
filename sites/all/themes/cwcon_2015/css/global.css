@@ -1,10 +1,3 @@
-/* @override http://siteslab.org/cwcon/2015/sites/all/themes/cwcon_2015/css/global.css?n5klyx */
-
-/* @override http://siteslab.org/cwcon/2015/sites/all/themes/new2014subtheme/css/global.css?n5kejt */
-
-/* @override http://siteslab.org/cwcon/2014/sites/all/themes/new2014subtheme/css/global.css?n45j77 */
-
-
 
 
 /* This file holds styles for the mobile version of your website (mobile first). */
@@ -12,14 +5,14 @@
 
 
 
-/*  2014 colors 
-	yellow is #a19734
-	brown is #7e6b42
-	light green  #5c7c35
-	medium green is #3a624c
-	dark green is #2e4424
+/* 2015 colors for UW-Stout
 
-*/
+blue: #004990;
+orange: #f5a01e;
+	
+	
+	
+ */
 /* specific styling of the front page of the 2014 website. Hides the node page title, the sidebar region and creates a clean look
 */
 
@@ -100,7 +93,7 @@ a:link {
 }
 
 .iconmenu li:hover {
-	background: #9966FF;
+	background: #f5a01e;
 	padding: 10px;	
 }
 
@@ -199,7 +192,8 @@ a:link {
 }
 
 .arearesources li:hover {
-	background: #9966FF;
+	/*background: #9966FF;*/
+	background: #f5a01e;
 	
 }
 
@@ -297,7 +291,7 @@ a:link {
 }
  
 .region-content-inner a:link {
-	color: #000;
+	color: #f5a01e;
 } 
  .region-content-inner {
 	
@@ -306,12 +300,12 @@ a:link {
 	padding-right: 10px;
 }
 
-/*#zone-content, #zone-preface {
-	background-color: #2e4424;	
+/*#zone-content, #zone-preface for 2015 site {
+	background-color: ##004990;	
 }*/
 
 #zone-content, #zone-preface {
-	background-color: #050505;	
+	background-color: #004990;	
 }
 
 .region-preface-first {
@@ -370,7 +364,7 @@ img#logo {
 }
 
 .region-preface-first-inner {
-	background-color: #050505;
+	background-color: ##004990;
 }
 
 /*styling the images to fit within their respective containers when viewed on different devices */
